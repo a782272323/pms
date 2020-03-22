@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>learn.lhb.pms</groupId>
+        <artifactId>pms-backend-dependencies</artifactId>
+        <version>1.0.0-SNAPSHOT</version>
+        <relativePath>../pms-backend-dependencies/pom.xml</relativePath>
+    </parent>
+
+    <artifactId>pms-backend-domain</artifactId>
+    <packaging>jar</packaging>
+    <name>pms-backend-domain</name>
+    <description></description>
+
+    <dependencies>
+       <!-- Project Begin -->
+        <dependency>
+            <groupId>learn.lhb.pms</groupId>
+            <artifactId>pms-backend-commons</artifactId>
+            <version>${project.parent.version}</version>
+        </dependency>
+       <!-- Project End -->
+    </dependencies>
+
+</project>
