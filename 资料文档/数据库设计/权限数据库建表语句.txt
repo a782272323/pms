@@ -1,0 +1,81 @@
+# 用户/账户表
+DROP TABLE IF EXISTS `tb_account`;
+CREATE TABLE `tb_account` (
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '账户id，自增',
+  `name` varchar(32) DEFAULT NULL COMMENT '账户姓名（一般用真名）',
+  `phone` char(11) NOT NULL COMMENT '手机号码',
+  `email` varchar(100) NOT NULL COMMENT '邮箱（用来找回密码）',
+  `telephone` varchar(16) DEFAULT NULL COMMENT '住宅电话',
+  `address` varchar(64) DEFAULT NULL COMMENT '联系地址',
+  `enabled` tinyint(1) DEFAULT '1' COMMENT '账户状态是否启用，启用：1，禁用：0，默认为启用状态',
+  `username` varchar(255) NOT NULL COMMENT '用户名',
+  `password` varchar(255) NOT NULL COMMENT '密码',
+  `user_face` varchar(255) DEFAULT NULL,
+  `remark` varchar(255) DEFAULT NULL,
+  `created` timestamp NOT NULL COMMENT '创建时间(根据表数据插入时间自动创建)',
+  `updated` timestamp NOT NULL COMMENT '更新时间',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
+
+#角色表
+DROP TABLE IF EXISTS `tb_role`;
+CREATE TABLE `tb_role` (
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '角色id，自增',
+  `name` varchar(64) NOT NULL COMMENT '角色名称（英文）',
+  `nameZh` varchar(64) DEFAULT NULL COMMENT '角色名称（中文）',
+  `description` varchar(255) DEFAULT NULL COMMENT '描述',
+  `created` timestamp NOT NULL COMMENT '创建时间(根据表数据插入时间自动创建)',
+  `updated` timestamp NOT NULL COMMENT '更新时间',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8;
+
+# 用户角色关系表
+DROP TABLE IF EXISTS `tb_account_role`;
+CREATE TABLE `tb_account_role` (
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '用户角色关系id，自增',
+  `account_id` int(11) NOT NULL  COMMENT '用户id',
+  `role_id` int(11) NOT NULL COMMENT '角色id',
+  `created` timestamp NOT NULL COMMENT '创建时间(根据表数据插入时间自动创建)',
+  `updated` timestamp NOT NULL COMMENT '更新时间',
+  PRIMARY KEY (`id`),
+  KEY `role_id` (`role_id`),
+  KEY `account_role_ibfk_1` (`account_id`),
+  CONSTRAINT `account_role_ibfk_1` FOREIGN KEY (`account_id`) REFERENCES `tb_account` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `account_role_ibfk_2` FOREIGN KEY (`role_id`) REFERENCES `tb_role` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=75 DEFAULT CHARSET=utf8;
+
+# 资源表
+DROP TABLE IF EXISTS `tb_resources`;
+CREATE TABLE `tb_resources` (
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '资源id，自增',
+  `url` varchar(64) DEFAULT NULL COMMENT '路径匹配规则，例如：/admin/**',
+  `path` varchar(64) DEFAULT NULL COMMENT 'vue路由中的path',
+  `component` varchar(64) DEFAULT NULL COMMENT 'vue组件component中的路由路径',
+  `name` varchar(64) DEFAULT NULL COMMENT '侧边栏的一级菜单名字',
+  `iconCls` varchar(64) DEFAULT NULL COMMENT '侧边栏一级菜单的图标的class样式',
+  `keepAlive` tinyint(1) DEFAULT NULL,
+  `requireAuth` tinyint(1) DEFAULT NULL,
+  `parent_id` int(11) DEFAULT NULL COMMENT '上一级资源id（父资源id），与资源id成为外键',
+  `enabled` tinyint(1) DEFAULT '1' COMMENT '资源状态是否启用，启用：1，禁用：0，默认为启用状态',
+  `description` varchar(255) DEFAULT NULL COMMENT '描述',
+  `created` timestamp NOT NULL COMMENT '创建时间(根据表数据插入时间自动创建)',
+  `updated` timestamp NOT NULL COMMENT '更新时间',
+  PRIMARY KEY (`id`),
+  KEY `parentId` (`parentId`),
+  CONSTRAINT `resources_ibfk_1` FOREIGN KEY (`parentId`) REFERENCES `tb_resources` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8;
+
+# 资源角色关系表
+DROP TABLE IF EXISTS `tb_resources_role`;
+CREATE TABLE `tb_resources_role` (
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '资源角色关系id，自增',
+  `resources_id` int(11) NOT NULL COMMENT '资源id',
+  `role_id` int(11) NOT NULL COMMENT '角色id',
+  `created` timestamp NOT NULL COMMENT '创建时间(根据表数据插入时间自动创建)',
+  `updated` timestamp NOT NULL COMMENT '更新时间',
+  PRIMARY KEY (`id`),
+  KEY `resources_id` (`resources_id`),
+  KEY `role_id` (`role_id`),
+  CONSTRAINT `resources_role_ibfk_1` FOREIGN KEY (`resources_id`) REFERENCES `tb_resources` (`id`),
+  CONSTRAINT `resources_role_ibfk_2` FOREIGN KEY (`role_id`) REFERENCES `tb_role` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=283 DEFAULT CHARSET=utf8;

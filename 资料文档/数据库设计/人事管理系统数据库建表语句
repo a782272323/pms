@@ -1,0 +1,222 @@
+# 部门表
+DROP TABLE IF EXISTS `department`;
+CREATE TABLE `department` (
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '部门表id，自增',
+  `name` varchar(32) DEFAULT NULL COMMENT '部门名称',
+  `parent_id` int(11) DEFAULT NULL COMMENT '父部门id（上一级部门id）',
+  `dep_path` varchar(255) DEFAULT NULL COMMENT 'ant风格的路径，.1.4.5',
+  `enabled` tinyint(1) DEFAULT '1' COMMENT '是否启用，1启用，0禁用，默认启用状态',
+  `isParent` tinyint(1) DEFAULT '0' COMMENT '是否为父级部门（1有子部门，0无子部门）',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=105 DEFAULT CHARSET=utf8;
+
+
+
+# 职称表
+DROP TABLE IF EXISTS `job_level`;
+CREATE TABLE `job_level` (
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '部门表id，自增',
+  `name` varchar(32) DEFAULT NULL COMMENT '职称名称',
+  `title_level` enum('正高级','副高级','中级','初级','员级') DEFAULT NULL COMMENT '职称等级(正高级，副高级，中级，初级，员级)',
+  `created` timestamp NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间(根据表数据插入时间自动创建)',
+  `enabled` tinyint(1) DEFAULT '1' COMMENT '是否启用，1启用，0禁用，默认启用状态',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8;
+
+
+
+# 职位表
+DROP TABLE IF EXISTS `position`;
+CREATE TABLE `position` (
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '职位表id，自增',
+  `name` varchar(32) DEFAULT NULL COMMENT '职位名称',
+  `created` timestamp NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间(根据表数据插入时间自动创建)',
+  `updated` timestamp DEFAULT NULL COMMENT '更新时间',
+  `enabled` tinyint(1) DEFAULT '1' COMMENT '是否启用，1启用，0禁用，默认启用状态',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `name` (`name`)
+) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=utf8;
+
+
+
+# 民族表
+DROP TABLE IF EXISTS `national`;
+CREATE TABLE `national` (
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '民族id，自增',
+  `name` varchar(32) DEFAULT NULL COMMENT '民族名称',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=57 DEFAULT CHARSET=utf8;
+# 数据
+insert  into `national`(`id`,`name`) values
+('汉族'),('蒙古族'),('回族'),('藏族'),('维吾尔族'),('苗族'),('彝族'),(,'壮族'),('布依族'),('朝鲜族'),('满族'),('侗族'),('瑶族'),('白族'),
+('土家族'),('哈尼族'),('哈萨克族'),('傣族'),('黎族'),('傈僳族'),('佤族'),('畲族'),('高山族'),('拉祜族'),('水族'),('东乡族'),('纳西族'),
+('景颇族'),('柯尔克孜族'),('土族'),('达斡尔族'),('仫佬族'),('羌族'),('布朗族'),('撒拉族'),('毛难族'),('仡佬族'),('锡伯族'),('阿昌族'),
+('普米族'),('塔吉克族'),('怒族'),('乌孜别克族'),('俄罗斯族'),('鄂温克族'),('崩龙族'),('保安族'),('裕固族'),('京族'),('塔塔尔族'),('独龙族'),
+('鄂伦春族'),('赫哲族'),('门巴族'),('珞巴族'),('基诺族');
+
+
+
+# 政治地位表
+DROP TABLE IF EXISTS `politics_status`;
+CREATE TABLE `politics_status` (
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '政治地位id，自增',
+  `name` varchar(32) DEFAULT NULL COMMENT '政治地位名称',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
+# 数据
+insert  into `politics_status`(`id`,`name`) values
+('中共党员'),('中共预备党员'),('共青团员'),('民革党员'),('民盟盟员'),('民建会员'),('民进会员'),('农工党党员'),('致公党党员'),('九三学社社员'),('台盟盟员'),
+('无党派民主人士'),('普通公民');
+
+
+
+# 工资帐套表
+DROP TABLE IF EXISTS `salary`;
+CREATE TABLE `salary` (
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '工资表id，自增',
+  `basic_salary` float(11) DEFAULT NULL COMMENT '基本工资',
+  `bonus` float(11) DEFAULT NULL COMMENT '奖金',
+  `lunch_salary` float(11) DEFAULT NULL COMMENT '午餐补助',
+  `traffic_salary` float(11) DEFAULT NULL COMMENT '交通补助',
+  `all_salary` float(11) DEFAULT NULL COMMENT '应发工资',
+  `pension_base` int(11) DEFAULT NULL COMMENT '养老金基数',
+  `pension_per` float DEFAULT NULL COMMENT '养老金比率',
+  `created` timestamp NULL DEFAULT NULL COMMENT '启用时间',
+  `medical_base` int(11) DEFAULT NULL COMMENT '医疗基数',
+  `medical_per` float DEFAULT NULL COMMENT '医疗保险比率',
+  `accumulation_fundBase` int(11) DEFAULT NULL COMMENT '公积金基数',
+  `accumulation_fundPer` float DEFAULT NULL COMMENT '公积金比率',
+  `name` varchar(32) DEFAULT NULL COMMENT '该工资帐套名称',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
+
+
+
+# 员工表
+DROP TABLE IF EXISTS `employee`;
+CREATE TABLE `employee` (
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '员工id，自增',
+  `name` varchar(10) DEFAULT NULL COMMENT '员工姓名',
+  `gender` char(4) DEFAULT NULL COMMENT '性别',
+  `birthday` date DEFAULT NULL COMMENT '出生日期(年月日)',
+  `id_card` char(18) NOT NULL COMMENT '身份证号',
+  `wedlock` enum('已婚','未婚','离异') DEFAULT NULL COMMENT '婚姻状况(离异，未婚，已婚)',
+  `national_id` int(8) DEFAULT NULL COMMENT '民族id',
+  `national_place` varchar(20) DEFAULT NULL COMMENT '籍贯',
+  `politic_id` int(8) DEFAULT NULL COMMENT '政治面貌（政治地位）id',
+  `email` varchar(100) DEFAULT NULL COMMENT '邮箱',
+  `phone` varchar(11) DEFAULT NULL COMMENT '电话号码',
+  `address` varchar(255) DEFAULT NULL COMMENT '联系地址',
+  `department_id` int(11) DEFAULT NULL COMMENT '部门id，所属部门',
+  `job_level_id` int(11) DEFAULT NULL COMMENT '职称ID',
+  `positional_id` int(11) DEFAULT NULL COMMENT '职位ID',
+  `engage_form` varchar(8) DEFAULT NULL COMMENT '聘用形式（两种，劳务合同，劳动合同）',
+  `tiptop_degree` enum('博士','硕士','本科','大专','高中','初中','小学','其他') DEFAULT NULL COMMENT '最高学历（博士，硕士，本科，大专，中专，高中，初中，小学，其它)',
+  `specialty` varchar(64) DEFAULT NULL COMMENT '所属专业',
+  `school` varchar(64) DEFAULT NULL COMMENT '毕业院校',
+  `begin_date` date DEFAULT NULL COMMENT '入职日期（年月日）',
+  `work_state` enum('在职','离职') DEFAULT '在职' COMMENT '在职状态',
+  `work_id` char(8) DEFAULT NULL COMMENT '工号',
+  `contract_term` double DEFAULT NULL COMMENT '合同期限（年月日）',
+  `conversion_time` date DEFAULT NULL COMMENT '转正日期（年月日）',
+  `not_work_date` date DEFAULT NULL COMMENT '离职日期（年月日）',
+  `begin_contract` date DEFAULT NULL COMMENT '合同起始日期（年月日）',
+  `end_contract` date DEFAULT NULL COMMENT '合同终止日期（年月日）',
+  `work_age` int(11) DEFAULT NULL COMMENT '工龄',
+  PRIMARY KEY (`id`),
+  KEY `department_id` (`department_id`),
+  KEY `job_id` (`job_level_id`),
+  KEY `duty_id` (`positional_id`),
+  KEY `national_id` (`national_id`),
+  KEY `politic_id` (`politic_id`),
+  KEY `work_id_key` (`work_id`),
+  CONSTRAINT `employee_ibfk_1` FOREIGN KEY (`department_id`) REFERENCES `department` (`id`),
+  CONSTRAINT `employee_ibfk_2` FOREIGN KEY (`job_level_id`) REFERENCES `job_level` (`id`),
+  CONSTRAINT `employee_ibfk_3` FOREIGN KEY (`positional_id`) REFERENCES `position` (`id`),
+  CONSTRAINT `employee_ibfk_4` FOREIGN KEY (`national_id`) REFERENCES `national` (`id`),
+  CONSTRAINT `employee_ibfk_5` FOREIGN KEY (`politic_id`) REFERENCES `politics_status` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1942 DEFAULT CHARSET=utf8;
+
+
+
+# 员工工资帐套关系表
+DROP TABLE IF EXISTS `employee_salary`;
+CREATE TABLE `employee_salary` (
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '员工工资帐套关系表id，自增',
+  `employee_id` int(11) DEFAULT NULL COMMENT '员工id',
+  `salary_id` int(11) DEFAULT NULL COMMENT '工资表id',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `employee_id` (`employee_id`),
+  KEY `employee_salary_ibfk_2` (`salary_id`),
+  CONSTRAINT `employee_salary_ibfk_1` FOREIGN KEY (`employee_id`) REFERENCES `employee` (`id`),
+  CONSTRAINT `employee_salary_ibfk_2` FOREIGN KEY (`salary_id`) REFERENCES `salary` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=39 DEFAULT CHARSET=utf8;
+
+
+
+# 员工奖罚表
+DROP TABLE IF EXISTS `employeeec`;
+CREATE TABLE `employeeec` (
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '员工奖罚表id，自增',
+  `employee_id` int(11) DEFAULT NULL COMMENT '员工编号',
+  `ec_date` date DEFAULT NULL COMMENT '奖罚日期（年月日）',
+  `ec_reason` varchar(255) DEFAULT NULL COMMENT '奖罚原因',
+  `ec_point` int(11) DEFAULT NULL COMMENT '奖罚分',
+  `ec_type` int(11) DEFAULT NULL COMMENT '奖罚类别，0：奖，1：罚',
+  `remark` varchar(255) DEFAULT NULL COMMENT '备注',
+  PRIMARY KEY (`id`),
+  KEY `pid` (`employee_id`),
+  CONSTRAINT `employeeec_ibfk_1` FOREIGN KEY (`employee_id`) REFERENCES `employee` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+
+# 调整工资表
+DROP TABLE IF EXISTS `adjust_salary`;
+CREATE TABLE `adjust_salary` (
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '调整工资表id，自增',
+  `employee_id` int(11) NOT NULL COMMENT '员工id',
+  `asDate` date DEFAULT NULL COMMENT '调薪日期(只要年月日)',
+  `before_salary` int(11) DEFAULT NULL COMMENT '调前薪资',
+  `after_salary` float(11) DEFAULT NULL COMMENT '调后薪资',
+  `reason` varchar(255) DEFAULT NULL COMMENT '调薪原因',
+  `remark` varchar(255) DEFAULT NULL COMMENT '备注',
+  PRIMARY KEY (`id`),
+  KEY `pid` (`employee_id`),
+  CONSTRAINT `adjust_salary_ibfk_1` FOREIGN KEY (`employee_id`) REFERENCES `employee` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+
+# 员工培训表
+DROP TABLE IF EXISTS `employee_train`;
+CREATE TABLE `employee_train` (
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '员工培训表id，自增',
+  `employee_id` int(11) DEFAULT NULL COMMENT '员工编号',
+  `train_date` date DEFAULT NULL COMMENT '培训日期',
+  `train_content` varchar(255) DEFAULT NULL COMMENT '培训内容',
+  `remark` varchar(255) DEFAULT NULL COMMENT '备注',
+  PRIMARY KEY (`id`),
+  KEY `pid` (`employee_id`),
+  CONSTRAINT `employeetrain_ibfk_1` FOREIGN KEY (`employee_id`) REFERENCES `employee` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+
+# 考评表
+DROP TABLE IF EXISTS `appraise`;
+CREATE TABLE `appraise` (
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '',
+  `employee_id` int(11) DEFAULT NULL COMMENT '',
+  `appraise_date` date DEFAULT NULL COMMENT '考评日期',
+  `appraise_result` varchar(32) DEFAULT NULL COMMENT '考评结果',
+  `appraise_content` varchar(255) DEFAULT NULL COMMENT '考评内容',
+  `remark` varchar(255) DEFAULT NULL COMMENT '备注',
+  PRIMARY KEY (`id`),
+  KEY `pid` (`employee_id`),
+  CONSTRAINT `appraise_ibfk_1` FOREIGN KEY (`employee_id`) REFERENCES `employee` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+
+
