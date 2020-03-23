@@ -28,7 +28,17 @@ pagehelper:
   params: count=countSql
   returnPageInfo: check
 
-  # sql语句出错再开启，不然耗内存
 logging:
   level:
-    learn.lhb.my.shop.backend.mapper : debug
+      learn.lhb.pms.admin: debug
+
+
+
+
+
+
+# oauth2 客户端参数配置,暂时这样配置，到时从数据库读取
+oauth2:
+  grant_type: password
+  client_id: client
+  client_secret: secret

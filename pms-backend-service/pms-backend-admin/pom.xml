@@ -34,7 +34,14 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
+            <version>${spring-boot-common.version}</version>
             <scope>test</scope>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.junit.vintage</groupId>
+                    <artifactId>junit-vintage-engine</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <!-- Spring Boot End -->
 
@@ -57,12 +64,23 @@
             <artifactId>pagehelper-spring-boot-starter</artifactId>
         </dependency>
 
-        <!-- Spring Security Begin -->
+        <!-- Spring Security oAuth2 Begin -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-security</artifactId>
         </dependency>
-        <!-- Spring Security End -->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-security</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.security.oauth.boot</groupId>
+            <artifactId>spring-security-oauth2-autoconfigure</artifactId>
+        </dependency>
+        <!-- Spring Security oAuth2 End -->
+
+        <!-- Others Begin -->
+        <!-- Others End -->
 
     </dependencies>
 
@@ -73,7 +91,7 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
-                    <mainClass></mainClass>
+                    <mainClass>learn.lhb.pms.admin.PmsAdminApplication</mainClass>
                 </configuration>
             </plugin>
         </plugins>
