@@ -9,5 +9,12 @@ package learn.lhb.pms.commons.constant;
  */
 public class UrlConstant {
 
+    /**
+     * 获取token
+     */
     public static final String URL_OAUTH_TOKEN = "http://localhost:11111/oauth/token";
+    /**
+     * 从请求中获取的地址，若如下
+     */
+    public static final String LOGIN_URL = "/v1/user/login";
 }

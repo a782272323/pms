@@ -17,8 +17,9 @@ spring:
 
 #mybatis
 mybatis:
-#  mapper-locations: classpath:mapper/*.xml
+  mapper-locations: classpath*:mapper/*.xml
   type-aliases-package: learn.lhb.pms.domain,learn.lhb.pms.commons.dto
+#  config-location: mapper/*.xml
 
 #pagehelper 分页插件
 pagehelper:
@@ -30,11 +31,9 @@ pagehelper:
 
 logging:
   level:
-      learn.lhb.pms.admin: debug
-
-
-
-
+      learn.lhb.pms.admin: trace
+      learn.lhb.pms.mapper: trace
+      learn.lhb.pms.service: trace
 
 
 # oauth2 客户端参数配置,暂时这样配置，到时从数据库读取

@@ -1,4 +1,4 @@
-package learn.lhb.pms.commons.dto;
+package learn.lhb.pms.commons.persistence;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -10,7 +10,7 @@ import java.util.Date;
  * @date 2020/3/24.
  * @time 10:42
  */
-public class BaseMapper implements Serializable {
+public class BaseEntity implements Serializable {
 
 
     private static final long serialVersionUID = -90000017L;
@@ -49,5 +49,14 @@ public class BaseMapper implements Serializable {
 
     public void setUpdated(Date updated) {
         this.updated = updated;
+    }
+
+    @Override
+    public String toString() {
+        return "BaseEntity{" +
+                "id=" + id +
+                ", created=" + created +
+                ", updated=" + updated +
+                '}';
     }
 }

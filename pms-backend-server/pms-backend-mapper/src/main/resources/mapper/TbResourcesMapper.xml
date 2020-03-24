@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="learn.lhb.pms.mapper.rbac.TbResourcesMapper">
+
+    <resultMap id="tbResources" type="learn.lhb.pms.domain.rbac.TbResources">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="url" property="url" jdbcType="VARCHAR"/>
+        <result column="path" property="path" jdbcType="VARCHAR"/>
+        <result column="component" property="component" jdbcType="VARCHAR"/>
+        <result column="name" property="name" jdbcType="VARCHAR"/>
+        <result column="icon_cls" property="iconCls" jdbcType="VARCHAR"/>
+        <result column="keep_alive" property="keepAlive" jdbcType="TINYINT"/>
+        <result column="require_auth" property="requireAuth" jdbcType="TINYINT"/>
+        <result column="parent_id" property="parentId" jdbcType="INTEGER"/>
+        <result column="enabled" property="enabled" jdbcType="TINYINT"/>
+        <result column="description" property="description" jdbcType="VARCHAR"/>
+        <result column="created" property="created" jdbcType="TIMESTAMP"/>
+        <result column="updated" property="updated" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <!-- 查询资源表中url和角色表中role的对应关系,主要是用来做ant风格的路径匹配 -->
+    <select id="getAllResources" resultType="learn.lhb.pms.domain.rbac.TbResources">
+        SELECT
+            r1.id AS id1, r1.name AS name1,
+            r2.id AS id2, r2.name AS name2,
+            r3.id AS id3, r3.name AS name3
+        FROM tb_resources r1, tb_resources r2, tb_resources r3
+        WHERE r1.id = r2.parent_id
+        AND r2.id = r3.parent_id
+        AND r3.enabled = true
+        ORDER BY r1.id, r2.id, r3.id
+    </select>
+</mapper>

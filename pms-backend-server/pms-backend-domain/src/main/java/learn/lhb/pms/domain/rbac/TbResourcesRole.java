@@ -1,6 +1,6 @@
 package learn.lhb.pms.domain.rbac;
 
-import learn.lhb.pms.commons.dto.BaseEntity;
+import learn.lhb.pms.commons.persistence.BaseEntity;
 
 /**
  * 资源角色关系表

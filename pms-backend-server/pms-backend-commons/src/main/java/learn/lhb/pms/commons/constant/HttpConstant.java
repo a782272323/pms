@@ -45,4 +45,16 @@ public class HttpConstant {
      * 登录成功
      */
     public static final String MSG_LOGIN_OK = "登录成功";
+    /**
+     * 用户名错误
+     */
+    public static final String MSG_USERNAME_ERROR = "用户名不对";
+    /**
+     * 为登录
+     */
+    public static final String MSG_NOT_LOGIN = "您还没有登录，请登录";
+    /**
+     * 权限不足，无法访问
+     */
+    public static final String MSG_NOT_ALLOW = "权限不足，无法访问，请联系系统管理员";
 }

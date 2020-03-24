@@ -1,6 +1,13 @@
 package learn.lhb.pms.domain.rbac;
 
-import learn.lhb.pms.commons.dto.BaseEntity;
+import com.google.common.collect.Lists;
+import learn.lhb.pms.commons.persistence.BaseEntity;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
+import java.util.Collection;
+import java.util.List;
 
 /**
  * 用户类，
@@ -28,11 +35,43 @@ public class TbAccount extends BaseEntity {
      */
     private String userFace;
     private String remark;
+//    private List<TbRole> roles;
+
+    @Override
+    public String toString() {
+        return "TbAccount{" +
+                "name='" + name + '\'' +
+                ", phone='" + phone + '\'' +
+                ", email='" + email + '\'' +
+                ", telephone='" + telephone + '\'' +
+                ", address='" + address + '\'' +
+                ", enabled=" + enabled +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", userFace='" + userFace + '\'' +
+                ", remark='" + remark + '\'' +
+                '}';
+    }
+
 
     /**
      * getters 和 setters
      * userDetails属性设置
      */
+
+//    /**
+//     * 获取当前用户所具有的角色
+//     * @return
+//     */
+//    @Override
+//    public Collection<? extends GrantedAuthority> getAuthorities() {
+//        List<GrantedAuthority> authorities = Lists.newArrayList();
+//        // 遍历角色对象来获取该用户对应的角色名
+//        for (TbRole role : roles) {
+//            authorities.add(new SimpleGrantedAuthority(role.getName()));
+//        }
+//        return authorities;
+//    }
 
     public String getName() {
         return name;
@@ -90,7 +129,6 @@ public class TbAccount extends BaseEntity {
         this.username = username;
     }
 
-
     public String getPassword() {
         return password;
     }
@@ -114,20 +152,49 @@ public class TbAccount extends BaseEntity {
     public void setRemark(String remark) {
         this.remark = remark;
     }
+//    /**
+//     * 账户是否过期
+//     * @return
+//     */
+//    @Override
+//    public boolean isAccountNonExpired() {
+//        return true;
+//    }
+//
+//    /**
+//     * 账户是否锁定
+//     * @return
+//     */
+//    @Override
+//    public boolean isAccountNonLocked() {
+//        return true;
+//    }
+//
+//    /**
+//     * 令牌是否过期，token
+//     * @return
+//     */
+//    @Override
+//    public boolean isCredentialsNonExpired() {
+//        return true;
+//    }
+//
+//    /**
+//     * 账户是否被禁用
+//     * @return
+//     */
+//    @Override
+//    public boolean isEnabled() {
+//        return enabled;
+//    }
 
-    @Override
-    public String toString() {
-        return "TbAccount{" +
-                "name='" + name + '\'' +
-                ", phone='" + phone + '\'' +
-                ", email='" + email + '\'' +
-                ", telephone='" + telephone + '\'' +
-                ", address='" + address + '\'' +
-                ", enabled=" + enabled +
-                ", username='" + username + '\'' +
-                ", password='" + password + '\'' +
-                ", userFace='" + userFace + '\'' +
-                ", remark='" + remark + '\'' +
-                '}';
-    }
+
+
+//    public List<TbRole> getRoles() {
+//        return roles;
+//    }
+//
+//    public void setRoles(List<TbRole> roles) {
+//        this.roles = roles;
+//    }
 }

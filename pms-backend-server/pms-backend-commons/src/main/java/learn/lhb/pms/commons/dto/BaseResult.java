@@ -218,23 +218,23 @@ public class BaseResult extends HashMap<String,Object> {
         /**
          * 成功
          */
-        public static final int OK = 20000;
+        public static final int OK = 200;
         /***
          * 失败
          */
-        public static final int ERROR = 50000;
+        public static final int ERROR = 500;
         /**
          * 非法token
          */
-        public static final int ILLEGAL_TOKEN = 50008;
+        public static final int ILLEGAL_TOKEN = 508;
         /**
          * 其他账号已经登录
          */
-        public static final int OTHER_CLIENTS_LOGGED_IN = 50012;
+        public static final int OTHER_CLIENTS_LOGGED_IN = 512;
         /**
          * token超时
          */
-        public static final int TOKEN_EXPIRED = 50014;
+        public static final int TOKEN_EXPIRED = 514;
     }
 
     /**

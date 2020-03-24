@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="learn.lhb.pms.mapper.rbac.TbAccountMapper">
+
+    <resultMap id="TbAccountMap" type="learn.lhb.pms.domain.rbac.TbAccount">
+        <id column="id" property="id" jdbcType="VARCHAR"/>
+        <result column="name" property="name" jdbcType="VARCHAR"/>
+        <result column="phone" property="phone" jdbcType="CHAR"/>
+        <result column="email" property="email" jdbcType="VARCHAR"/>
+        <result column="telephone" property="telephone" jdbcType="VARCHAR"/>
+        <result column="address" property="address" jdbcType="VARCHAR"/>
+        <result column="enabled" property="enabled" jdbcType="TINYINT"/>
+        <result column="username" property="username" jdbcType="VARCHAR"/>
+        <result column="password" property="password" jdbcType="VARCHAR"/>
+        <result column="user_face" property="userFace" jdbcType="VARCHAR"/>
+        <result column="remark" property="remark" jdbcType="VARCHAR"/>
+        <result column="created" property="created" jdbcType="TIMESTAMP"/>
+        <result column="updated" property="updated" jdbcType="TIMESTAMP"/>
+    </resultMap>
+    <!-- 可重复引用的 -->
+    <sql id="tbAccountColumns">
+        `id`,`name`,`phone`,`email`,`telephone`,`enabled`,`username`,`password`,`user_face`,`remark`,`created`,`updated`
+    </sql>
+    <!--  -->
+    <select id="loadUserByUsername" resultType="learn.lhb.pms.domain.rbac.TbAccount">
+        SELECT <include refid="tbAccountColumns"/> FROM tb_account WHERE username=#{username}
+    </select>
+</mapper>

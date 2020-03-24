@@ -22,6 +22,16 @@
             <artifactId>pms-backend-commons</artifactId>
             <version>${project.parent.version}</version>
         </dependency>
+        <dependency>
+            <groupId>learn.lhb.pms</groupId>
+            <artifactId>pms-backend-domain</artifactId>
+            <version>${project.parent.version}</version>
+        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>learn.lhb.pms</groupId>-->
+<!--            <artifactId>pms-backend-service</artifactId>-->
+<!--            <version>${project.parent.version}</version>-->
+<!--        </dependency>-->
         <!-- Project End -->
 
         <!-- 整合druid -->

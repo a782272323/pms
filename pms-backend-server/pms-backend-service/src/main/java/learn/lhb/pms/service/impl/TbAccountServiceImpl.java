@@ -5,6 +5,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
+ * 用户表逻辑控制层实现类
+ *
  * @author 梁鸿斌
  * @date 2020/3/24.
  * @time 10:56

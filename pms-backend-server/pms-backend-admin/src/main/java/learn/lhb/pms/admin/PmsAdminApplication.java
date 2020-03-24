@@ -9,7 +9,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @date 2020/3/23.
  * @time 00:04
  */
-@SpringBootApplication
+@SpringBootApplication(scanBasePackages = "learn.lhb.pms")
 @MapperScan(basePackages = "learn.lhb.pms.mapper")
 public class PmsAdminApplication {
     public static void main(String[] args) {

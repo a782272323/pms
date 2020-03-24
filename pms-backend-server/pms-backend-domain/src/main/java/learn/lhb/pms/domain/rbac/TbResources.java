@@ -1,6 +1,8 @@
 package learn.lhb.pms.domain.rbac;
 
-import learn.lhb.pms.commons.dto.BaseEntity;
+import learn.lhb.pms.commons.persistence.BaseEntity;
+
+import java.util.List;
 
 /**
  * 资源表
@@ -23,7 +25,7 @@ public class TbResources extends BaseEntity {
     /**
      * vue组件component中的路由路径
      */
-    private String Component;
+    private String component;
     /**
      * 侧边栏的一级菜单名字
      */
@@ -52,6 +54,10 @@ public class TbResources extends BaseEntity {
      * 描述
      */
     private String description;
+//    /**
+//     * 拥有的角色
+//     */
+//    private List<TbRole> roles;
 
     public String getUrl() {
         return url;
@@ -70,11 +76,11 @@ public class TbResources extends BaseEntity {
     }
 
     public String getComponent() {
-        return Component;
+        return component;
     }
 
     public void setComponent(String component) {
-        Component = component;
+        this.component = component;
     }
 
     public String getName() {
@@ -138,7 +144,7 @@ public class TbResources extends BaseEntity {
         return "TbResources{" +
                 "url='" + url + '\'' +
                 ", path='" + path + '\'' +
-                ", Component='" + Component + '\'' +
+                ", Component='" + component + '\'' +
                 ", name='" + name + '\'' +
                 ", iconCls='" + iconCls + '\'' +
                 ", keepAlive='" + keepAlive + '\'' +
@@ -148,4 +154,12 @@ public class TbResources extends BaseEntity {
                 ", description='" + description + '\'' +
                 '}';
     }
+
+//    public List<TbRole> getRoles() {
+//        return roles;
+//    }
+//
+//    public void setRoles(List<TbRole> roles) {
+//        this.roles = roles;
+//    }
 }

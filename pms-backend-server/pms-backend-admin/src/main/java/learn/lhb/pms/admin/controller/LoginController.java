@@ -9,6 +9,7 @@ import learn.lhb.pms.commons.dto.LoginInfo;
 import learn.lhb.pms.commons.dto.LoginParam;
 import learn.lhb.pms.commons.utils.MapperUtils;
 import learn.lhb.pms.commons.utils.OkHttpClientUtil;
+import learn.lhb.pms.domain.rbac.TbRole;
 import okhttp3.Response;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -27,6 +28,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
@@ -113,10 +115,11 @@ public class LoginController {
     public BaseResult info(Authentication authentication) throws Exception {
         LOG.debug("获取用户消息登录到首页");
         String jsonString = authentication.getName();
-        LOG.debug("jsonString = {}");
+        LOG.debug("jsonString = {}",jsonString);
         LoginInfo loginInfo = new LoginInfo();
         loginInfo.setName(authentication.getName());
         loginInfo.setAvatar("");
+        System.out.println(authentication.getAuthorities().getClass());
         loginInfo.setRoles("USER");
         return BaseResult.ok().put(HttpConstant.OK, HttpConstant.MSG_DEFAULT_OK, DtoParamsConstant.DATA, loginInfo);
     }
