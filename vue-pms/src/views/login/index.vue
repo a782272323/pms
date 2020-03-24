@@ -3,7 +3,7 @@
     <el-form ref="loginForm" :model="loginForm" :rules="loginRules" class="login-form" autocomplete="on" label-position="left">
 
       <div class="title-container">
-        <h3 class="title">Login Form</h3>
+        <h3 class="title">松果人事 | 后台管理系统</h3>
       </div>
 
       <el-form-item prop="username">
@@ -45,20 +45,18 @@
         </el-form-item>
       </el-tooltip>
 
-      <el-button :loading="loading" type="primary" style="width:100%;margin-bottom:30px;" @click.native.prevent="handleLogin">Login</el-button>
+      <el-button :loading="loading" type="primary" style="width:100%;margin-bottom:30px;" @click.native.prevent="handleLogin">登 录</el-button>
 
-      <div style="position:relative">
+      <div style="position:relative;" >
         <div class="tips">
-          <span>Username : admin</span>
-          <span>Password : any</span>
+          <span><a href="#">忘记密码?</a></span>
         </div>
         <div class="tips">
-          <span style="margin-right:18px;">Username : editor</span>
-          <span>Password : any</span>
+          <span style="margin-right:18px;"><a href="#">注 册</a></span>
         </div>
 
         <el-button class="thirdparty-button" type="primary" @click="showDialog=true">
-          Or connect with
+          第三方登录
         </el-button>
       </div>
     </el-form>
