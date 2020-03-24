@@ -1,5 +1,6 @@
 package learn.lhb.pms.admin;
 
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -9,6 +10,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @time 00:04
  */
 @SpringBootApplication
+@MapperScan(basePackages = "learn.lhb.pms.mapper")
 public class PmsAdminApplication {
     public static void main(String[] args) {
         SpringApplication.run(PmsAdminApplication.class, args);

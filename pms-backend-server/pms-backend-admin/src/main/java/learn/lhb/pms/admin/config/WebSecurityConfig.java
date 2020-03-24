@@ -1,6 +1,6 @@
 package learn.lhb.pms.admin.config;
 
-import learn.lhb.pms.admin.service.impl.UserDetailsServiceImpl;
+import learn.lhb.pms.service.impl.UserDetailsServiceImpl;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;

@@ -1,7 +1,10 @@
-package learn.lhb.pms.admin.service.impl;
+package learn.lhb.pms.service.impl;
 
+import learn.lhb.pms.domain.rbac.TbAccount;
+import learn.lhb.pms.mapper.TbAccountMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
@@ -25,6 +28,9 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
     private static final String USERNAME = "admin";
     private static final String PASSWORD = "$2a$10$XFSfCISi8m1IVURYQt7u5OE1aqiNfkCkCYsD4AF/nqzrG7vUaRXUu";
+
+    @Autowired
+    private TbAccountMapper tbAccountMapper;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {

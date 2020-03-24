@@ -11,7 +11,7 @@
     </parent>
 
     <groupId>learn.lhb.pms</groupId>
-    <artifactId>pms-backend-service</artifactId>
+    <artifactId>pms-backend-server</artifactId>
     <version>1.0.0-SNAPSHOT</version>
     <packaging>pom</packaging>
 
@@ -19,7 +19,10 @@
         <module>pms-backend-dependencies</module>
         <module>pms-backend-commons</module>
         <module>pms-backend-domain</module>
+        <module>pms-backend-mapper</module>
+        <module>pms-backend-service</module>
         <module>pms-backend-admin</module>
     </modules>
+
 
 </project>
