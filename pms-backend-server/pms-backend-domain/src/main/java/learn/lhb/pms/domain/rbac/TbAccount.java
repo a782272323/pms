@@ -1,6 +1,6 @@
 package learn.lhb.pms.domain.rbac;
 
-import learn.lhb.pms.commons.dto.BaseMapper;
+import learn.lhb.pms.commons.dto.BaseEntity;
 
 /**
  * 用户类，
@@ -8,7 +8,7 @@ import learn.lhb.pms.commons.dto.BaseMapper;
  * @date 2020/3/24.
  * @time 10:24
  */
-public class TbAccount extends BaseMapper {
+public class TbAccount extends BaseEntity {
 
     private static final long serialVersionUID = -90000004L;
 
@@ -115,4 +115,19 @@ public class TbAccount extends BaseMapper {
         this.remark = remark;
     }
 
+    @Override
+    public String toString() {
+        return "TbAccount{" +
+                "name='" + name + '\'' +
+                ", phone='" + phone + '\'' +
+                ", email='" + email + '\'' +
+                ", telephone='" + telephone + '\'' +
+                ", address='" + address + '\'' +
+                ", enabled=" + enabled +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", userFace='" + userFace + '\'' +
+                ", remark='" + remark + '\'' +
+                '}';
+    }
 }

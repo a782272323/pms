@@ -1,19 +1,19 @@
 package learn.lhb.pms.domain.rbac;
 
-import learn.lhb.pms.commons.dto.BaseMapper;
-
-import java.io.Serializable;
-import java.util.Date;
+import learn.lhb.pms.commons.dto.BaseEntity;
 
 /**
  * @author 梁鸿斌
  * @date 2020/3/24.
  * @time 10:35
  */
-public class TbRole extends BaseMapper {
+public class TbRole extends BaseEntity {
 
     private static final long serialVersionUID = -90030935L;
 
+    /**
+     * 名字（英文）
+     */
     private String name;
     private String nameZh;
     private String description;
@@ -43,4 +43,12 @@ public class TbRole extends BaseMapper {
         this.description = description;
     }
 
+    @Override
+    public String toString() {
+        return "TbRole{" +
+                "name='" + name + '\'' +
+                ", nameZh='" + nameZh + '\'' +
+                ", description='" + description + '\'' +
+                '}';
+    }
 }
