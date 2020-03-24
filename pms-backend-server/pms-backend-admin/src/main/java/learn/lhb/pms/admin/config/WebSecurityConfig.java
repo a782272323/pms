@@ -114,7 +114,16 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     public void configure(WebSecurity web) throws Exception {
         web
                 .ignoring()
-                .antMatchers(UrlConstant.LOGIN_URL,"/index.html","/static/**")
+                // 登录接口不拦截
+                .antMatchers(UrlConstant.LOGIN_URL)
+                // 放开swagger2的url
+                .antMatchers(UrlConstant.SWAGGER2)
+                .antMatchers("/v2/**")
+                .antMatchers(UrlConstant.SWAGGER2_RESOURCES)
+                .antMatchers("/course/coursebase/**")
+                .antMatchers("/webjars/**")
+//                .antMatchers("/index.html")
+//                .antMatchers("/static/**")
                 ;
     }
 
@@ -143,8 +152,15 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 // 允许基于 HttpServletRequest 限制访问
                 .authorizeRequests()
+                // 配置授权规则,受保护的资源
                 .antMatchers("/v1/user/info").hasAnyAuthority("USER")
                 .antMatchers("/v1/user/logout").hasAnyAuthority("USER")
+                // 放行的路径
+//                .antMatchers("/v2/api-docs", "/swagger-resources/configuration/ui",
+//                        "/swagger-resources","/swagger-resources/configuration/security",
+//                        "/swagger-ui.html","/course/coursebase/**").permitAll()
+//                .antMatchers(UrlConstant.SWAGGER2,"/v2/**",UrlConstant.SWAGGER2_RESOURCES).permitAll()
+                .anyRequest().permitAll()
 
         ;
 

@@ -1,15 +1,19 @@
 package learn.lhb.pms.admin.controller;
 
 import com.google.common.collect.Maps;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import learn.lhb.pms.commons.constant.DtoParamsConstant;
 import learn.lhb.pms.commons.constant.HttpConstant;
 import learn.lhb.pms.commons.constant.UrlConstant;
 import learn.lhb.pms.commons.dto.BaseResult;
-import learn.lhb.pms.commons.dto.LoginInfo;
-import learn.lhb.pms.commons.dto.LoginParam;
+import learn.lhb.pms.commons.dto.login.LoginInfo;
+import learn.lhb.pms.commons.dto.login.LoginParam;
 import learn.lhb.pms.commons.utils.MapperUtils;
 import learn.lhb.pms.commons.utils.OkHttpClientUtil;
-import learn.lhb.pms.domain.rbac.TbRole;
 import okhttp3.Response;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -28,7 +32,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
-import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
@@ -42,6 +45,7 @@ import java.util.Objects;
 @CrossOrigin(origins = "*",maxAge = 3600)
 @RestController
 @RequestMapping("v1/user")
+@Api(tags = "登录相关接口")
 public class LoginController {
 
     /**
@@ -72,6 +76,11 @@ public class LoginController {
      * @param loginParam
      * @return
      */
+    @ApiOperation("登录接口,请求方式用RequestBody传")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "username", value = "用户名", required = true),
+            @ApiImplicitParam(name = "password", value = "密码", required = true)
+    })
     @PostMapping("login")
     private BaseResult login(@RequestBody LoginParam loginParam) {
         LOG.debug("登录");
@@ -110,6 +119,10 @@ public class LoginController {
      * @return
      * @throws Exception
      */
+    @ApiOperation("跳转首页，需要携带token，token不写在url后面")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "username", value = "用户名", required = true)
+    })
     @CrossOrigin
     @GetMapping("info")
     public BaseResult info(Authentication authentication) throws Exception {
@@ -129,6 +142,8 @@ public class LoginController {
      * @param request
      * @return
      */
+    @ApiOperation("注销/退出，携带token来注销token")
+    @ApiParam(name = "access_token",value = "token令牌，在url后面传",required = true)
     @PostMapping("logout")
     public BaseResult logout(HttpServletRequest request) {
         String token = request.getParameter("access_token");

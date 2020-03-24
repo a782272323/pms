@@ -44,6 +44,7 @@
         <pageHelper.version>1.2.3</pageHelper.version>
         <jackson.version>2.9.5</jackson.version><!-- json转换，jackson版本 -->
         <guava.version>28.2-jre</guava.version>
+        <swagger2.version>2.9.2</swagger2.version><!-- swagger2 -->
 
     </properties>
 
@@ -154,6 +155,8 @@
             </dependency>
             <!-- Spring Security oAuth2 End -->
 
+
+
             <!-- Others Begin -->
             <dependency>
                 <groupId>com.squareup.okhttp3</groupId>
@@ -181,6 +184,17 @@
                 <groupId>com.google.guava</groupId>
                 <artifactId>guava</artifactId>
                 <version>${guava.version}</version>
+            </dependency>
+            <!-- swagger2 -->
+            <dependency>
+                <groupId>io.springfox</groupId>
+                <artifactId>springfox-swagger2</artifactId>
+                <version>${swagger2.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.springfox</groupId>
+                <artifactId>springfox-swagger-ui</artifactId>
+                <version>${swagger2.version}</version>
             </dependency>
             <!-- Others End -->
         </dependencies>

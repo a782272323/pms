@@ -1,4 +1,6 @@
-package learn.lhb.pms.commons.dto;
+package learn.lhb.pms.commons.dto.login;
+
+import io.swagger.annotations.ApiModel;
 
 import java.io.Serializable;
 
@@ -7,6 +9,7 @@ import java.io.Serializable;
  * @date 2020/3/23.
  * @time 12:43
  */
+@ApiModel
 public class LoginParam implements Serializable {
 
 
