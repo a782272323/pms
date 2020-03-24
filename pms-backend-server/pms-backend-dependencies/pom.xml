@@ -42,7 +42,7 @@
         <!-- others -->
         <okhttp3.version>4.0.1</okhttp3.version>
         <pageHelper.version>1.2.3</pageHelper.version>
-        <jackson.version>2.9.5</jackson.version><!-- json转换，jackson版本 -->
+        <jackson.version>2.10.3</jackson.version><!-- json转换，jackson版本 -->
         <guava.version>28.2-jre</guava.version>
 
     </properties>
