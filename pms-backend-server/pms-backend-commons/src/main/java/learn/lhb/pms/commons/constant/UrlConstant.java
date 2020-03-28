@@ -17,12 +17,5 @@ public class UrlConstant {
      * 从请求中获取的地址，若如下
      */
     public static final String LOGIN_URL = "/v1/user/login";
-    /**
-     * Swagger2 文档地址
-     */
-    public static final String SWAGGER2 = "/swagger-ui.html";
-    /**
-     * Swagger2 资源地址
-     */
-    public static final String SWAGGER2_RESOURCES = "/swagger-resources/**";
+
 }

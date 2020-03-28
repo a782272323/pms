@@ -21,8 +21,19 @@
     <sql id="tbAccountColumns">
         `id`,`name`,`phone`,`email`,`telephone`,`enabled`,`username`,`password`,`user_face`,`remark`,`created`,`updated`
     </sql>
-    <!--  -->
+    <!-- 根据用户名查询数据库是否存在记录 -->
     <select id="loadUserByUsername" resultType="learn.lhb.pms.domain.rbac.TbAccount">
         SELECT <include refid="tbAccountColumns"/> FROM tb_account WHERE username=#{username}
+    </select>
+
+    <!-- 根据id获取权限 -->
+    <select id="getTbAccountRolesById" resultType="learn.lhb.pms.domain.rbac.TbRole">
+        SELECT r.* FROM tb_role r, tb_account_role ar WHERE ar.role_id = r.id
+        AND ar.account_id = #{id}
+    </select>
+
+    <!-- 根据用户名获取用户表全部信息 -->
+    <select id="getTbAccountByUsername" resultType="learn.lhb.pms.domain.rbac.TbAccount">
+        SELECT * FROM tb_account WHERE username = #{username}
     </select>
 </mapper>

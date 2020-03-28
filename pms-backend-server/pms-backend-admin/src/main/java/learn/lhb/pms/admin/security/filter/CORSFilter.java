@@ -1,4 +1,4 @@
-package learn.lhb.pms.admin.config;
+package learn.lhb.pms.admin.security.filter;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.Ordered;
@@ -24,12 +24,12 @@ import java.io.IOException;
 @Order(Ordered.HIGHEST_PRECEDENCE)
 @Configuration
 public class CORSFilter implements Filter {
- 
+
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
- 
+
     }
- 
+
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
         HttpServletRequest request = (HttpServletRequest) servletRequest;
@@ -45,9 +45,9 @@ public class CORSFilter implements Filter {
             filterChain.doFilter(servletRequest,servletResponse);
         }
     }
- 
+
     @Override
     public void destroy() {
- 
+
     }
 }

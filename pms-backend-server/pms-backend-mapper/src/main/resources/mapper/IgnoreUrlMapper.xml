@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="learn.lhb.pms.mapper.basis.IgnoreUrlMapper">
+
+    <resultMap id="IgnoreUrl" type="learn.lhb.pms.domain.basis.IgnoreUrl">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="url" property="url" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <!-- 获取 ignore url  -->
+    <select id="getIgnoreUrl" resultType="learn.lhb.pms.domain.basis.IgnoreUrl">
+        SELECT url FROM ignore_url
+    </select>
+</mapper>

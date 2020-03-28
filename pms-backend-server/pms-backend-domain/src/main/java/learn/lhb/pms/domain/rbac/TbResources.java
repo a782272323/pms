@@ -1,5 +1,6 @@
 package learn.lhb.pms.domain.rbac;
 
+import com.google.common.collect.Lists;
 import learn.lhb.pms.commons.persistence.BaseEntity;
 
 import java.util.List;
@@ -23,25 +24,21 @@ public class TbResources extends BaseEntity {
      */
     private String path;
     /**
+     * 面包屑重定向
+     */
+    private String redirect;
+    /**
      * vue组件component中的路由路径
      */
     private String component;
     /**
-     * 侧边栏的一级菜单名字
+     * 侧边栏菜单名字
      */
     private String name;
     /**
-     * 侧边栏一级菜单的图标的class样式
+     * 侧边栏元数据 meta
      */
-    private String iconCls;
-    /**
-     * 未知
-     */
-    private String keepAlive;
-    /**
-     * 未知
-     */
-    private String requireAuth;
+    private Meta meta;
     /**
      * 上一级资源id（父资源id），与资源id成为外键
      */
@@ -54,10 +51,15 @@ public class TbResources extends BaseEntity {
      * 描述
      */
     private String description;
-//    /**
-//     * 拥有的角色
-//     */
-//    private List<TbRole> roles;
+    /**
+     * 拥有的角色
+     */
+    private List<TbRole> roles;
+
+    /**
+     * 递归查询使用
+     */
+    private List<TbResources> children;
 
     public String getUrl() {
         return url;
@@ -91,29 +93,7 @@ public class TbResources extends BaseEntity {
         this.name = name;
     }
 
-    public String getIconCls() {
-        return iconCls;
-    }
 
-    public void setIconCls(String iconCls) {
-        this.iconCls = iconCls;
-    }
-
-    public String getKeepAlive() {
-        return keepAlive;
-    }
-
-    public void setKeepAlive(String keepAlive) {
-        this.keepAlive = keepAlive;
-    }
-
-    public String getRequireAuth() {
-        return requireAuth;
-    }
-
-    public void setRequireAuth(String requireAuth) {
-        this.requireAuth = requireAuth;
-    }
 
     public Long getParentId() {
         return parentId;
@@ -144,22 +124,47 @@ public class TbResources extends BaseEntity {
         return "TbResources{" +
                 "url='" + url + '\'' +
                 ", path='" + path + '\'' +
-                ", Component='" + component + '\'' +
+                ", redirect='" + redirect + '\'' +
+                ", component='" + component + '\'' +
                 ", name='" + name + '\'' +
-                ", iconCls='" + iconCls + '\'' +
-                ", keepAlive='" + keepAlive + '\'' +
-                ", requireAuth='" + requireAuth + '\'' +
+                ", meta=" + meta +
                 ", parentId=" + parentId +
                 ", enabled=" + enabled +
                 ", description='" + description + '\'' +
+                ", roles=" + roles +
+                ", children=" + children +
                 '}';
     }
 
-//    public List<TbRole> getRoles() {
-//        return roles;
-//    }
-//
-//    public void setRoles(List<TbRole> roles) {
-//        this.roles = roles;
-//    }
+    public List<TbRole> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(List<TbRole> roles) {
+        this.roles = roles;
+    }
+
+    public List<TbResources> getChildren() {
+        return children;
+    }
+
+    public void setChildren(List<TbResources> children) {
+        this.children = children;
+    }
+
+    public String getRedirect() {
+        return redirect;
+    }
+
+    public void setRedirect(String redirect) {
+        this.redirect = redirect;
+    }
+
+    public Meta getMeta() {
+        return meta;
+    }
+
+    public void setMeta(Meta meta) {
+        this.meta = meta;
+    }
 }

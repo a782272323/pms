@@ -1,22 +1,29 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="learn.lhb.pms.mapper.rbac.TbResourcesMapper">
-
+    <!-- todo 递归查询，association用法做笔记。 -->
     <resultMap id="tbResources" type="learn.lhb.pms.domain.rbac.TbResources">
         <id column="id" property="id" jdbcType="INTEGER"/>
         <result column="url" property="url" jdbcType="VARCHAR"/>
         <result column="path" property="path" jdbcType="VARCHAR"/>
         <result column="component" property="component" jdbcType="VARCHAR"/>
         <result column="name" property="name" jdbcType="VARCHAR"/>
-        <result column="icon_cls" property="iconCls" jdbcType="VARCHAR"/>
-        <result column="keep_alive" property="keepAlive" jdbcType="TINYINT"/>
-        <result column="require_auth" property="requireAuth" jdbcType="TINYINT"/>
+        <result column="redirect" property="redirect" jdbcType="VARCHAR"/>
         <result column="parent_id" property="parentId" jdbcType="INTEGER"/>
         <result column="enabled" property="enabled" jdbcType="TINYINT"/>
         <result column="description" property="description" jdbcType="VARCHAR"/>
         <result column="created" property="created" jdbcType="TIMESTAMP"/>
         <result column="updated" property="updated" jdbcType="TIMESTAMP"/>
+        <!-- 级联 -->
+        <association property="meta" javaType="learn.lhb.pms.domain.rbac.Meta">
+            <result column="title" property="title" jdbcType="VARCHAR"/>
+            <result column="icon" property="icon" jdbcType="VARCHAR"/>
+        </association>
+        <!-- 递归查询 -->
+        <collection column="id" property="children" ofType="learn.lhb.pms.domain.rbac.TbResources"
+        javaType="java.util.ArrayList" select="selectResourcesChildrenById"/>
     </resultMap>
+
 
     <!-- 查询资源表中url和角色表中role的对应关系,主要是用来做ant风格的路径匹配 -->
     <select id="getAllResources" resultType="learn.lhb.pms.domain.rbac.TbResources">
@@ -29,5 +36,53 @@
         AND r2.id = r3.parent_id
         AND r3.enabled = true
         ORDER BY r1.id, r2.id, r3.id
+    </select>
+
+    <!-- 查询资源表和角色表的所有字段的并集 -->
+    <select id="getAllResourcesWithRole" resultType="learn.lhb.pms.domain.rbac.TbResources">
+        SELECT re.*,r.id AS role_id,r.name AS role_name,r.name_zh AS role_name_zh
+        FROM tb_resources re,tb_resources_role rr,tb_role r
+        WHERE re.id=rr.resources_id
+        AND rr.role_id=r.id
+        ORDER BY re.id
+    </select>
+
+    <!-- 根据角色名获取资源参数来做路由表 -->
+    <select id="getRouteByRoleName" resultType="java.util.List" resultMap="tbResources">
+        SELECT id,path,component,`name`,icon,redirect,title,parent_id
+        FROM tb_resources WHERE id IN
+        (
+            SELECT tb_resources_role.resources_id FROM tb_role,tb_resources_role
+            WHERE tb_role.id=tb_resources_role.role_id
+            AND tb_role.name = #{roleName}
+        )
+    </select>
+
+    <!-- 递归查询,返回层级关系给前端做路由表 -->
+    <!-- 先查询角色拥有的根级别的资源 -->
+    <select id="getResourcesTree" resultMap="tbResources" resultType="java.util.HashMap">
+        SELECT id,`name`,path,redirect,component,title,icon,parent_id FROM tb_resources
+        WHERE id IN
+        (
+            SELECT tb_resources_role.resources_id FROM tb_role,tb_resources_role
+            WHERE tb_role.id = tb_resources_role.role_id
+            AND tb_role.name = #{name}
+            )
+        AND parent_id IS NULL OR parent_id = ''
+        AND enabled = 1
+    </select>
+    <!-- 利用上面查询结果的column的id的值做递归查询,查出所有菜单 -->
+    <select id="selectResourcesChildrenById" resultMap="tbResources" resultType="learn.lhb.pms.domain.rbac.TbResources">
+        SELECT id,`name`,path,redirect,component,title,icon,parent_id
+        FROM tb_resources WHERE parent_id = #{parent_id} AND enabled = 1
+    </select>
+
+    <!-- 根据角色名查询能访问的权限 -->
+    <select id="getUrlByRoleName" resultType="learn.lhb.pms.domain.rbac.TbResources">
+        SELECT url FROM tb_resources WHERE id IN
+        (
+            SELECT tb_resources_role.resources_id FROM tb_role,tb_resources_role
+            WHERE tb_role.id=tb_resources_role.role_id AND tb_role.name = #{roleName}
+        )
     </select>
 </mapper>

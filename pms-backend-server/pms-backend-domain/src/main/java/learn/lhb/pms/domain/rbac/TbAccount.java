@@ -15,7 +15,7 @@ import java.util.List;
  * @date 2020/3/24.
  * @time 10:24
  */
-public class TbAccount extends BaseEntity {
+public class TbAccount extends BaseEntity implements UserDetails {
 
     private static final long serialVersionUID = -90000004L;
 
@@ -35,7 +35,7 @@ public class TbAccount extends BaseEntity {
      */
     private String userFace;
     private String remark;
-//    private List<TbRole> roles;
+    private List<TbRole> roles;
 
     @Override
     public String toString() {
@@ -59,19 +59,19 @@ public class TbAccount extends BaseEntity {
      * userDetails属性设置
      */
 
-//    /**
-//     * 获取当前用户所具有的角色
-//     * @return
-//     */
-//    @Override
-//    public Collection<? extends GrantedAuthority> getAuthorities() {
-//        List<GrantedAuthority> authorities = Lists.newArrayList();
-//        // 遍历角色对象来获取该用户对应的角色名
-//        for (TbRole role : roles) {
-//            authorities.add(new SimpleGrantedAuthority(role.getName()));
-//        }
-//        return authorities;
-//    }
+    /**
+     * 获取当前用户所具有的角色
+     * @return
+     */
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        List<GrantedAuthority> authorities = Lists.newArrayList();
+        // 遍历角色对象来获取该用户对应的角色名
+        for (TbRole role : roles) {
+            authorities.add(new SimpleGrantedAuthority(role.getName()));
+        }
+        return authorities;
+    }
 
     public String getName() {
         return name;
@@ -113,9 +113,9 @@ public class TbAccount extends BaseEntity {
         this.address = address;
     }
 
-    public Boolean getEnabled() {
-        return enabled;
-    }
+//    public Boolean getEnabled() {
+//        return enabled;
+//    }
 
     public void setEnabled(Boolean enabled) {
         this.enabled = enabled;
@@ -152,49 +152,50 @@ public class TbAccount extends BaseEntity {
     public void setRemark(String remark) {
         this.remark = remark;
     }
-//    /**
-//     * 账户是否过期
-//     * @return
-//     */
-//    @Override
-//    public boolean isAccountNonExpired() {
-//        return true;
-//    }
-//
-//    /**
-//     * 账户是否锁定
-//     * @return
-//     */
-//    @Override
-//    public boolean isAccountNonLocked() {
-//        return true;
-//    }
-//
-//    /**
-//     * 令牌是否过期，token
-//     * @return
-//     */
-//    @Override
-//    public boolean isCredentialsNonExpired() {
-//        return true;
-//    }
-//
-//    /**
-//     * 账户是否被禁用
-//     * @return
-//     */
-//    @Override
-//    public boolean isEnabled() {
-//        return enabled;
-//    }
+
+    /**
+     * 账户是否过期
+     * @return
+     */
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    /**
+     * 账户是否锁定
+     * @return
+     */
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    /**
+     * 令牌是否过期，token
+     * @return
+     */
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    /**
+     * 账户是否被禁用
+     * @return
+     */
+    @Override
+    public boolean isEnabled() {
+        return enabled;
+    }
 
 
 
-//    public List<TbRole> getRoles() {
-//        return roles;
-//    }
-//
-//    public void setRoles(List<TbRole> roles) {
-//        this.roles = roles;
-//    }
+    public List<TbRole> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(List<TbRole> roles) {
+        this.roles = roles;
+    }
 }

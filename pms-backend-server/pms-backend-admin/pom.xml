@@ -22,16 +22,6 @@
             <artifactId>pms-backend-commons</artifactId>
             <version>${project.parent.version}</version>
         </dependency>
-<!--        <dependency>-->
-<!--            <groupId>learn.lhb.pms</groupId>-->
-<!--            <artifactId>pms-backend-domain</artifactId>-->
-<!--            <version>${project.parent.version}</version>-->
-<!--        </dependency>-->
-<!--        <dependency>-->
-<!--            <groupId>learn.lhb.pms</groupId>-->
-<!--            <artifactId>pms-backend-mapper</artifactId>-->
-<!--            <version>${project.parent.version}</version>-->
-<!--        </dependency>-->
         <dependency>
             <groupId>learn.lhb.pms</groupId>
             <artifactId>pms-backend-service</artifactId>
@@ -54,8 +44,21 @@
             </exclusions>
         </dependency>
         <!-- Spring Boot End -->
-        <!-- Spring Security oAuth2 Begin -->
-        <!-- Spring Security oAuth2 End -->
+
+        <!-- Spring Security Begin -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-jwt</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt</artifactId>
+        </dependency>
+        <!-- Spring Security End -->
 
         <!-- Others Begin -->
         <!-- Others End -->

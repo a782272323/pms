@@ -21,4 +21,12 @@ public class DtoParamsConstant {
      * 返回数据的数量
      */
     public static final String COUNT = "COUNT";
+    /**
+     * 获取路由树
+     */
+    public static final String ROUTER_TREE = "getRouterTree";
+    /**
+     * vue需要的登录参数
+     */
+    public static final String LOGIN_INFO = "getLoginInfo";
 }

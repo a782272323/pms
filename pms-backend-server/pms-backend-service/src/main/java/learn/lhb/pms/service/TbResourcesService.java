@@ -2,6 +2,7 @@ package learn.lhb.pms.service;
 
 import learn.lhb.pms.domain.rbac.TbResources;
 
+import java.awt.*;
 import java.util.List;
 
 /**
@@ -18,4 +19,10 @@ public interface TbResourcesService {
      * @return
      */
     List<TbResources> getAllResources();
+
+    /**
+     * 查询资源表和角色表的所有字段的并集
+     * @return
+     */
+    List<TbResources> getAllResourcesWithRole();
 }

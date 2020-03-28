@@ -18,6 +18,10 @@ public class HttpConstant {
      * 默认的失败的状态码
      */
     public static final int ERROR = 500;
+    /**
+     * 无权访问
+     */
+    public static final int NOT_ALLOW = 401;
 
 
     /* 常量 */
@@ -46,9 +50,13 @@ public class HttpConstant {
      */
     public static final String MSG_LOGIN_OK = "登录成功";
     /**
+     * 注销成功
+     */
+    public static final String MSG_LOGOUT_OK = "注销成功";
+    /**
      * 用户名错误
      */
-    public static final String MSG_USERNAME_ERROR = "用户名不对";
+    public static final String MSG_USERNAME_ERROR = "用户名不存在";
     /**
      * 为登录
      */
@@ -57,4 +65,20 @@ public class HttpConstant {
      * 权限不足，无法访问
      */
     public static final String MSG_NOT_ALLOW = "权限不足，无法访问，请联系系统管理员";
+    /**
+     * 账户被锁定，请联系管理员!
+     */
+    public static final String MSG_ACCOUNT_LOCKED = "账户被锁定，请联系管理员!";
+    /**
+     * "密码过期，请联系管理员!"
+     */
+    public static final String MSG_CREDENTIAL_EXPIRED = "密码过期，请联系管理员!";
+    /**
+     * "账户过期，请联系管理员!"
+     */
+    public static final String MSG_ACCOUNT_EXPIRED = "账户过期，请重新登录!";
+    /**
+     * "账户被禁用，请联系管理员!"
+     */
+    public static final String MSG_ACCOUNT_DISABLE = "账户被禁用，请联系管理员!";
 }

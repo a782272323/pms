@@ -34,10 +34,3 @@ logging:
       learn.lhb.pms.admin: trace
       learn.lhb.pms.mapper: trace
       learn.lhb.pms.service: trace
-
-
-# oauth2 客户端参数配置,暂时这样配置，到时从数据库读取
-oauth2:
-  grant_type: password
-  client_id: client
-  client_secret: secret
