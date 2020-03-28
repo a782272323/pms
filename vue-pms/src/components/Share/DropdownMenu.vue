@@ -12,28 +12,28 @@
 
 <script>
 export default {
-  props: {
-    items: {
-      type: Array,
-      default: function() {
-        return []
-      }
+    props: {
+        items: {
+            type: Array,
+            default: function() {
+                return []
+            }
+        },
+        title: {
+            type: String,
+            default: 'vue'
+        }
     },
-    title: {
-      type: String,
-      default: 'vue'
+    data() {
+        return {
+            isActive: false
+        }
+    },
+    methods: {
+        clickTitle() {
+            this.isActive = !this.isActive
+        }
     }
-  },
-  data() {
-    return {
-      isActive: false
-    }
-  },
-  methods: {
-    clickTitle() {
-      this.isActive = !this.isActive
-    }
-  }
 }
 </script>
 

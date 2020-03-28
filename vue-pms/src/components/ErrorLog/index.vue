@@ -48,23 +48,23 @@
 
 <script>
 export default {
-  name: 'ErrorLog',
-  data() {
-    return {
-      dialogTableVisible: false
+    name: 'ErrorLog',
+    data() {
+        return {
+            dialogTableVisible: false
+        }
+    },
+    computed: {
+        errorLogs() {
+            return this.$store.getters.errorLogs
+        }
+    },
+    methods: {
+        clearAll() {
+            this.dialogTableVisible = false
+            this.$store.dispatch('errorLog/clearErrorLog')
+        }
     }
-  },
-  computed: {
-    errorLogs() {
-      return this.$store.getters.errorLogs
-    }
-  },
-  methods: {
-    clearAll() {
-      this.dialogTableVisible = false
-      this.$store.dispatch('errorLog/clearErrorLog')
-    }
-  }
 }
 </script>
 

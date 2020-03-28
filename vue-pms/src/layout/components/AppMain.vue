@@ -1,7 +1,10 @@
 <template>
   <section class="app-main">
+    <!-- transition 定义来页面之间的切换动画 -->
     <transition name="fade-transform" mode="out-in">
+      <!-- keep-alive 为了缓存 router-view -->
       <keep-alive :include="cachedViews">
+        <!-- 加上一个唯一的 key，来保证路由切换时都会重新渲染触发钩子了 -->
         <router-view :key="key" />
       </keep-alive>
     </transition>
@@ -10,15 +13,16 @@
 
 <script>
 export default {
-  name: 'AppMain',
-  computed: {
-    cachedViews() {
-      return this.$store.state.tagsView.cachedViews
-    },
-    key() {
-      return this.$route.path
+    name: 'AppMain',
+    computed: {
+        cachedViews() {
+            return this.$store.state.tagsView.cachedViews
+        },
+        // 加上一个唯一的 key，来保证路由切换时都会重新渲染触发钩子了
+        key() {
+            return this.$route.path
+        }
     }
-  }
 }
 </script>
 

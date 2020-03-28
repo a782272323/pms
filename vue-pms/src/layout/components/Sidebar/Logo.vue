@@ -15,19 +15,19 @@
 
 <script>
 export default {
-  name: 'SidebarLogo',
-  props: {
-    collapse: {
-      type: Boolean,
-      required: true
+    name: 'SidebarLogo',
+    props: {
+        collapse: {
+            type: Boolean,
+            required: true
+        }
+    },
+    data() {
+        return {
+            title: '松果人事',
+            logo: 'https://wpimg.wallstcn.com/69a1c46c-eb1c-4b46-8bd4-e9e686ef5251.png'
+        }
     }
-  },
-  data() {
-    return {
-      title: '松果人事',
-      logo: 'https://wpimg.wallstcn.com/69a1c46c-eb1c-4b46-8bd4-e9e686ef5251.png'
-    }
-  }
 }
 </script>
 

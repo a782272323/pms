@@ -23,12 +23,12 @@
 <script>
 
 export default {
-  name: 'Page404',
-  computed: {
-    message() {
-      return 'The webmaster said that you can not enter this page...'
+    name: 'Page404',
+    computed: {
+        message() {
+            return 'The webmaster said that you can not enter this page...'
+        }
     }
-  }
 }
 </script>
 

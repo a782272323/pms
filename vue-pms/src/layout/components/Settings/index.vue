@@ -3,10 +3,10 @@
     <div>
       <h3 class="drawer-title">页面风格设置</h3>
 
-<!--      <div class="drawer-item">-->
-<!--        <span>Theme Color</span>-->
-<!--        <theme-picker style="float: right;height: 26px;margin: -3px 8px 0 0;" @change="themeChange" />-->
-<!--      </div>-->
+      <!--      <div class="drawer-item">-->
+      <!--        <span>Theme Color</span>-->
+      <!--        <theme-picker style="float: right;height: 26px;margin: -3px 8px 0 0;" @change="themeChange" />-->
+      <!--      </div>-->
 
       <div class="drawer-item">
         <span>浮动导航栏</span>
@@ -28,56 +28,56 @@
 </template>
 
 <script>
-import ThemePicker from '@/components/ThemePicker'
+// import ThemePicker from '@/components/ThemePicker'
 
 export default {
-  components: { ThemePicker },
-  data() {
-    return {}
-  },
-  computed: {
-    fixedHeader: {
-      get() {
-        return this.$store.state.settings.fixedHeader
-      },
-      set(val) {
-        this.$store.dispatch('settings/changeSetting', {
-          key: 'fixedHeader',
-          value: val
-        })
-      }
+    // components: { ThemePicker },
+    data() {
+        return {}
     },
-    tagsView: {
-      get() {
-        return this.$store.state.settings.tagsView
-      },
-      set(val) {
-        this.$store.dispatch('settings/changeSetting', {
-          key: 'tagsView',
-          value: val
-        })
-      }
+    computed: {
+        fixedHeader: {
+            get() {
+                return this.$store.state.settings.fixedHeader
+            },
+            set(val) {
+                this.$store.dispatch('settings/changeSetting', {
+                    key: 'fixedHeader',
+                    value: val
+                })
+            }
+        },
+        tagsView: {
+            get() {
+                return this.$store.state.settings.tagsView
+            },
+            set(val) {
+                this.$store.dispatch('settings/changeSetting', {
+                    key: 'tagsView',
+                    value: val
+                })
+            }
+        },
+        sidebarLogo: {
+            get() {
+                return this.$store.state.settings.sidebarLogo
+            },
+            set(val) {
+                this.$store.dispatch('settings/changeSetting', {
+                    key: 'sidebarLogo',
+                    value: val
+                })
+            }
+        }
     },
-    sidebarLogo: {
-      get() {
-        return this.$store.state.settings.sidebarLogo
-      },
-      set(val) {
-        this.$store.dispatch('settings/changeSetting', {
-          key: 'sidebarLogo',
-          value: val
-        })
-      }
+    methods: {
+        themeChange(val) {
+            this.$store.dispatch('settings/changeSetting', {
+                key: 'theme',
+                value: val
+            })
+        }
     }
-  },
-  methods: {
-    themeChange(val) {
-      this.$store.dispatch('settings/changeSetting', {
-        key: 'theme',
-        value: val
-      })
-    }
-  }
 }
 </script>
 
