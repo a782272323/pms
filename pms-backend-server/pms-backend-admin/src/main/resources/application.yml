@@ -18,7 +18,7 @@ spring:
 #mybatis
 mybatis:
   mapper-locations: classpath*:mapper/*.xml
-  type-aliases-package: learn.lhb.pms.domain,learn.lhb.pms.commons.dto
+  type-aliases-package: learn.lhb.pms.domain,learn.lhb.pms.commons.vo,learn.lhb.pms.commons.dto
 #  config-location: mapper/*.xml
 
 #pagehelper 分页插件

@@ -1,0 +1,25 @@
+package learn.lhb.pms.mapper.basis;
+
+import learn.lhb.pms.commons.persistence.BaseMapper;
+import learn.lhb.pms.domain.basis.Employee;
+import learn.lhb.pms.commons.vo.PageParams;
+import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Repository;
+
+import java.util.List;
+
+/**
+ * @author 梁鸿斌
+ * @date 2020/3/29.
+ * @time 00:44
+ */
+@Repository
+public interface EmployeeMapper extends BaseMapper<Employee> {
+
+//    /**
+//     * 获取全部表信息
+//     *
+//     * @return
+//     */
+//    List<Employee> selectAll(@Param("pageParams")PageParams pageParams);
+}

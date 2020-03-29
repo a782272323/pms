@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="learn.lhb.pms.mapper.basis.EmployeeMapper">
+    <resultMap id="EmployeeMap" type="learn.lhb.pms.domain.basis.Employee">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="name" property="name" jdbcType="VARCHAR"/>
+        <result column="gender" property="gender" jdbcType="VARCHAR"/>
+        <result column="birthday" property="birthday" jdbcType="TIMESTAMP"/>
+        <result column="id_card" property="idCard" jdbcType="TIMESTAMP"/>
+        <result column="wedlock" property="wedlock" jdbcType="VARCHAR"/>
+        <result column="national_id" property="nationalId" jdbcType="INTEGER"/>
+        <result column="politic_id" property="politicId" jdbcType="INTEGER"/>
+        <result column="email" property="email" jdbcType="VARCHAR"/>
+        <result column="phone" property="phone" jdbcType="VARCHAR"/>
+        <result column="address" property="address" jdbcType="VARCHAR"/>
+        <result column="department_id" property="departmentId" jdbcType="INTEGER"/>
+        <result column="job_level_id" property="jobLevelId" jdbcType="INTEGER"/>
+        <result column="positional_id" property="positionalId" jdbcType="INTEGER"/>
+        <result column="engage_form" property="engageForm" jdbcType="VARCHAR"/>
+        <result column="tiptop_degree" property="tiptopDegree" jdbcType="VARCHAR"/>
+        <result column="specialty" property="specialty" jdbcType="VARCHAR"/>
+        <result column="school" property="school" jdbcType="VARCHAR"/>
+        <result column="begin_date" property="beginDate" jdbcType="TIMESTAMP"/>
+        <result column="work_state" property="workState" jdbcType="VARCHAR"/>
+        <result column="work_id" property="workId" jdbcType="INTEGER"/>
+        <result column="contract_term" property="contractTerm" jdbcType="INTEGER"/>
+        <result column="contract_term" property="contractTerm" jdbcType="DOUBLE"/>
+        <result column="conversion_time" property="conversionTime" jdbcType="TIMESTAMP"/>
+        <result column="no_work_date" property="notWorkDate" jdbcType="TIMESTAMP"/>
+        <result column="begin_contract" property="beginContract" jdbcType="TIMESTAMP"/>
+        <result column="end_contract" property="endContract" jdbcType="TIMESTAMP"/>
+        <result column="work_age" property="workAge" jdbcType="DOUBLE"/>
+    </resultMap>
+
+    <!-- 获取全部表信息 -->
+    <select id="selectAll" resultType="learn.lhb.pms.domain.basis.Employee" resultMap="EmployeeMap">
+        SELECT * FROM employee ORDER BY ${sortName} ${sortType}
+    </select>
+</mapper>

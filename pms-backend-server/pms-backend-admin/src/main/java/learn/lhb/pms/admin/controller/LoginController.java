@@ -9,7 +9,6 @@ import learn.lhb.pms.commons.constant.DtoParamsConstant;
 import learn.lhb.pms.commons.constant.HttpConstant;
 import learn.lhb.pms.commons.dto.BaseResult;
 import learn.lhb.pms.commons.dto.login.LoginInfo;
-import learn.lhb.pms.domain.rbac.TbResources;
 import learn.lhb.pms.mapper.rbac.TbResourcesMapper;
 import learn.lhb.pms.mapper.rbac.TbRoleMapper;
 import learn.lhb.pms.service.impl.TbAccountServiceImpl;
@@ -23,7 +22,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
-import java.util.List;
 import java.util.Map;
 
 /**
