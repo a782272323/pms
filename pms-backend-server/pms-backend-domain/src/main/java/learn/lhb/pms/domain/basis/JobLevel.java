@@ -1,5 +1,7 @@
 package learn.lhb.pms.domain.basis;
 
+import learn.lhb.pms.commons.persistence.BaseEntity;
+
 import java.io.Serializable;
 import java.util.Date;
 
@@ -10,13 +12,9 @@ import java.util.Date;
  * @date 2020/3/29.
  * @time 00:10
  */
-public class JobLevel implements Serializable {
+public class JobLevel extends BaseEntity {
 
     private static final long serialVersionUID = -90000097L;
-    /**
-     * 职称等级表id，自增
-     */
-    private Long id;
     /**
      * 职称等级名称
      */
@@ -27,10 +25,6 @@ public class JobLevel implements Serializable {
      */
     private String titleLevel;
     /**
-     * 创建时间（插入表数据时自动生成)
-     */
-    private Date created;
-    /**
      * 是否启用，1启用，0禁用，默认启用状态
      */
     private Boolean enabled;
@@ -38,20 +32,10 @@ public class JobLevel implements Serializable {
     @Override
     public String toString() {
         return "JobLevel{" +
-                "id=" + id +
                 ", name='" + name + '\'' +
                 ", titleLevel='" + titleLevel + '\'' +
-                ", created=" + created +
                 ", enabled=" + enabled +
                 '}';
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getName() {
@@ -68,14 +52,6 @@ public class JobLevel implements Serializable {
 
     public void setTitleLevel(String titleLevel) {
         this.titleLevel = titleLevel;
-    }
-
-    public Date getCreated() {
-        return created;
-    }
-
-    public void setCreated(Date created) {
-        this.created = created;
     }
 
     public Boolean getEnabled() {

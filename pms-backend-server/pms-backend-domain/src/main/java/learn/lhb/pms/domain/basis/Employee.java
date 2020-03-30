@@ -39,7 +39,7 @@ public class Employee extends BaseEntity {
     /**
      * 名族id
      */
-    private Long nationalId;
+    private Integer nationalId;
     /**
      * 籍贯
      */
@@ -47,7 +47,7 @@ public class Employee extends BaseEntity {
     /**
      * 政治面貌（地位）id
      */
-    private Long politicId;
+    private Integer politicId;
     /**
      * 邮箱
      */
@@ -63,15 +63,15 @@ public class Employee extends BaseEntity {
     /**
      * 部门id，所属部门
      */
-    private Long departmentId;
+    private Integer departmentId;
     /**
      * 职称ID
      */
-    private Long jobLevelId;
+    private Integer jobLevelId;
     /**
      * 职位ID
      */
-    private Long positionalId;
+    private Integer positionalId;
     /**
      * 聘用形式（两种，劳务合同,劳动合同）
      */
@@ -192,28 +192,12 @@ public class Employee extends BaseEntity {
         this.wedlock = wedlock;
     }
 
-    public Long getNationalId() {
-        return nationalId;
-    }
-
-    public void setNationalId(Long nationalId) {
-        this.nationalId = nationalId;
-    }
-
     public String getNationalPlace() {
         return nationalPlace;
     }
 
     public void setNationalPlace(String nationalPlace) {
         this.nationalPlace = nationalPlace;
-    }
-
-    public Long getPoliticId() {
-        return politicId;
-    }
-
-    public void setPoliticId(Long politicId) {
-        this.politicId = politicId;
     }
 
     public String getEmail() {
@@ -238,30 +222,6 @@ public class Employee extends BaseEntity {
 
     public void setAddress(String address) {
         this.address = address;
-    }
-
-    public Long getDepartmentId() {
-        return departmentId;
-    }
-
-    public void setDepartmentId(Long departmentId) {
-        this.departmentId = departmentId;
-    }
-
-    public Long getJobLevelId() {
-        return jobLevelId;
-    }
-
-    public void setJobLevelId(Long jobLevelId) {
-        this.jobLevelId = jobLevelId;
-    }
-
-    public Long getPositionalId() {
-        return positionalId;
-    }
-
-    public void setPositionalId(Long positionalId) {
-        this.positionalId = positionalId;
     }
 
     public String getEngageForm() {
@@ -374,5 +334,45 @@ public class Employee extends BaseEntity {
 
     public void setTiptopDegree(String tiptopDegree) {
         this.tiptopDegree = tiptopDegree;
+    }
+
+    public Integer getNationalId() {
+        return nationalId;
+    }
+
+    public void setNationalId(Integer nationalId) {
+        this.nationalId = nationalId;
+    }
+
+    public Integer getPoliticId() {
+        return politicId;
+    }
+
+    public void setPoliticId(Integer politicId) {
+        this.politicId = politicId;
+    }
+
+    public Integer getDepartmentId() {
+        return departmentId;
+    }
+
+    public void setDepartmentId(Integer departmentId) {
+        this.departmentId = departmentId;
+    }
+
+    public Integer getJobLevelId() {
+        return jobLevelId;
+    }
+
+    public void setJobLevelId(Integer jobLevelId) {
+        this.jobLevelId = jobLevelId;
+    }
+
+    public Integer getPositionalId() {
+        return positionalId;
+    }
+
+    public void setPositionalId(Integer positionalId) {
+        this.positionalId = positionalId;
     }
 }

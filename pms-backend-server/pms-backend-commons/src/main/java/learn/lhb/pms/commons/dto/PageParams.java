@@ -1,4 +1,4 @@
-package learn.lhb.pms.commons.vo;
+package learn.lhb.pms.commons.dto;
 
 import java.io.Serializable;
 

@@ -4,11 +4,12 @@
     <resultMap id="EmployeeMap" type="learn.lhb.pms.domain.basis.Employee">
         <id column="id" property="id" jdbcType="INTEGER"/>
         <result column="name" property="name" jdbcType="VARCHAR"/>
-        <result column="gender" property="gender" jdbcType="VARCHAR"/>
+        <result column="gender" property="gender" jdbcType="CHAR"/>
         <result column="birthday" property="birthday" jdbcType="TIMESTAMP"/>
-        <result column="id_card" property="idCard" jdbcType="TIMESTAMP"/>
+        <result column="id_card" property="idCard" jdbcType="VARCHAR"/>
         <result column="wedlock" property="wedlock" jdbcType="VARCHAR"/>
         <result column="national_id" property="nationalId" jdbcType="INTEGER"/>
+        <result column="national_place" property="nationalPlace" jdbcType="VARCHAR" />
         <result column="politic_id" property="politicId" jdbcType="INTEGER"/>
         <result column="email" property="email" jdbcType="VARCHAR"/>
         <result column="phone" property="phone" jdbcType="VARCHAR"/>
@@ -26,14 +27,82 @@
         <result column="contract_term" property="contractTerm" jdbcType="INTEGER"/>
         <result column="contract_term" property="contractTerm" jdbcType="DOUBLE"/>
         <result column="conversion_time" property="conversionTime" jdbcType="TIMESTAMP"/>
-        <result column="no_work_date" property="notWorkDate" jdbcType="TIMESTAMP"/>
+        <result column="not_work_date" property="notWorkDate" jdbcType="TIMESTAMP"/>
         <result column="begin_contract" property="beginContract" jdbcType="TIMESTAMP"/>
         <result column="end_contract" property="endContract" jdbcType="TIMESTAMP"/>
         <result column="work_age" property="workAge" jdbcType="DOUBLE"/>
     </resultMap>
+    <sql id="EmployeeColumn1">
+        id,employee.name,gender,birthday,id_card,wedlock,national_id,national_place,politic_id,
+        email,phone,address,department_id,job_level_id,positional_id,engage_form,tiptop_degree,
+        specialty,school,begin_date,work_state,work_id,contract_term,conversion_time,not_work_date,
+        begin_contract,end_contract,work_age
+    </sql>
 
     <!-- 获取全部表信息 -->
-    <select id="selectAll" resultType="learn.lhb.pms.domain.basis.Employee" resultMap="EmployeeMap">
+    <select id="selectAll" resultType="java.util.HashMap" resultMap="EmployeeMap">
         SELECT * FROM employee ORDER BY ${sortName} ${sortType}
+    </select>
+
+    <!-- 查询结果的总笔数 -->
+    <select id="count" resultType="Integer">
+        SELECT COUNT(*) FROM employee
+        <where>
+            <if test="entity.name != null and entity.name != ''">
+                AND name LIKE CONCAT('%',#{entity.name},'%')
+            </if>
+            <if test="entity.politicId != null and entity.politicId != ''">
+                AND politic_id LIKE CONCAT('%',#{entity.politicId},'%')
+            </if>
+            <if test="entity.nationalId != null and entity.nationalId != ''">
+                AND national_id LIKE CONCAT('%',#{entity.nationalId},'%')
+            </if>
+            <if test="entity.jobLevelId != null and entity.jobLevelId != ''">
+                AND job_level_id LIKE CONCAT('%',#{entity.jobLevelId},'%')
+            </if>
+            <if test="entity.departmentId != null and entity.departmentId != ''">
+                AND department_id LIKE CONCAT('%',#{entity.departmentId},'%')
+            </if>
+            <if test="entity.positionalId != null and entity.positionalId != ''">
+                AND positional_id LIKE CONCAT('%',#{entity.positionalId},'%')
+            </if>
+            <if test="entity.engageForm != null and entity.engageForm != ''">
+                AND engage_form LIKE CONCAT('%',#{entity.engageForm},'%')
+            </if>
+        </where>
+    </select>
+
+    <!-- 模糊查询数据（分页，排序) -->
+    <select id="queryAll" resultType="java.util.HashMap">
+        SELECT * FROM employee
+        <where>
+            <if test="entity.name != null and entity.name != ''">
+                AND name LIKE CONCAT('%',#{entity.name},'%')
+            </if>
+            <if test="entity.politicId != null and entity.politicId != ''">
+                AND politic_id LIKE CONCAT('%',#{entity.politicId},'%')
+            </if>
+            <if test="entity.nationalId != null and entity.nationalId != ''">
+                AND national_id LIKE CONCAT('%',#{entity.nationalId},'%')
+            </if>
+            <if test="entity.jobLevelId != null and entity.jobLevelId != ''">
+                AND job_level_id LIKE CONCAT('%',#{entity.jobLevelId},'%')
+            </if>
+            <if test="entity.departmentId != null and entity.departmentId != ''">
+                AND department_id LIKE CONCAT('%',#{entity.departmentId},'%')
+            </if>
+            <if test="entity.positionalId != null and entity.positionalId != ''">
+                AND positional_id LIKE CONCAT('%',#{entity.positionalId},'%')
+            </if>
+            <if test="entity.engageForm != null and entity.engageForm != ''">
+                AND engage_form LIKE CONCAT('%',#{entity.engageForm},'%')
+            </if>
+        </where>
+        ORDER BY ${page.sortName} ${page.sortType}
+    </select>
+
+    <!-- 下拉框数据(劳动合同),要返回的数据按需加入 -->
+    <select id="selectDropDownList" resultType="java.util.HashMap">
+        SELECT DISTINCT engage_form FROM employee
     </select>
 </mapper>

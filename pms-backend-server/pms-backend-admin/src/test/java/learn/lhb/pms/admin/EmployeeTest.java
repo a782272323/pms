@@ -3,6 +3,7 @@ package learn.lhb.pms.admin;
 import learn.lhb.pms.commons.constant.DtoParamsConstant;
 import learn.lhb.pms.commons.constant.HttpConstant;
 import learn.lhb.pms.commons.dto.BaseResult;
+import learn.lhb.pms.domain.basis.Employee;
 import learn.lhb.pms.service.EmployeeService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -26,5 +27,13 @@ public class EmployeeTest {
     @Test
     public void selectAllTest() {
 //        System.out.println(BaseResult.ok().put(HttpConstant.OK, HttpConstant.MSG_DEFAULT_OK, DtoParamsConstant.DATA, employeeService.selectAll()));
+    }
+
+    /**
+     * 任意下拉框数据
+     */
+    @Test
+    public void selectDropDownList() {
+        System.out.println(employeeService.selectDropDownList());
     }
 }

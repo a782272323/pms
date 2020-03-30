@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="learn.lhb.pms.mapper.basis.DepartmentMapper">
+    <resultMap id="DepartmentMap" type="learn.lhb.pms.domain.basis.Department">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="name" property="name" jdbcType="VARCHAR"/>
+        <result column="parent_id" property="parentId" jdbcType="INTEGER"/>
+        <result column="dep_path" property="depPath" jdbcType="VARCHAR"/>
+        <result column="dep_path" property="depPath" jdbcType="VARCHAR"/>
+        <result column="enabled" property="enabled" jdbcType="TINYINT"/>
+        <result column="is_parent" property="isParent" jdbcType="TINYINT"/>
+    </resultMap>
+
+    <!-- 根据名字获取id -->
+    <select id="getIdByName" resultType="learn.lhb.pms.domain.basis.Department">
+        SELECT id FROM department
+        <where>
+            <if test="name != null and name != ''">
+                AND name = #{name}
+            </if>
+        </where>
+    </select>
+
+    <!-- 单条数据查询（可根据任意字段查询并返回数据） -->
+<!--    <select id="queryOne" resultMap="DepartmentMap" resultType="java.util.HashMap">-->
+<!--        SELECT * FROM department WHERE name = #{entity.name}-->
+<!--    </select>-->
+</mapper>

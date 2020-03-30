@@ -1,6 +1,7 @@
 package learn.lhb.pms.commons.persistence;
 
-import learn.lhb.pms.commons.vo.PageParams;
+import learn.lhb.pms.commons.dto.PageParams;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 import java.util.Map;
@@ -20,4 +21,32 @@ public interface BaseService<T extends BaseEntity> {
      * @return
      */
     public List<T> selectAll(PageParams pageParams);
+
+    /**
+     * 查询结果的总笔数
+     * @param entity
+     * @return
+     */
+    public Integer count(T entity);
+
+    /**
+     * 模糊查询数据（分页，排序)
+     * @param pageParams
+     * @param entity
+     * @return
+     */
+    public List<T> queryAll(PageParams pageParams, @Param("entity") T entity);
+
+//    /**
+//     * 根据表的某一字段，返回整张表的数据（单个）
+//     * @param object
+//     * @return
+//     */
+//    public T queryOne(@Param("object") Object object);
+
+    /**
+     * 任意下拉框数据
+     * @return
+     */
+    public List<T> selectDropDownList();
 }

@@ -1,5 +1,7 @@
 package learn.lhb.pms.domain.basis;
 
+import learn.lhb.pms.commons.persistence.BaseEntity;
+
 import java.io.Serializable;
 
 /**
@@ -9,13 +11,9 @@ import java.io.Serializable;
  * @date 2020/3/28.
  * @time 23:55
  */
-public class Department implements Serializable {
+public class Department extends BaseEntity {
 
     private static final long serialVersionUID = -90032664L;
-    /**
-     * 部门表id，自增
-     */
-    private Long id;
     /**
      * 部门名称
      */
@@ -40,21 +38,12 @@ public class Department implements Serializable {
     @Override
     public String toString() {
         return "Department{" +
-                "id=" + id +
                 ", name='" + name + '\'' +
                 ", parentId=" + parentId +
                 ", depPath='" + depPath + '\'' +
                 ", enabled=" + enabled +
                 ", isParent=" + isParent +
                 '}';
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getName() {

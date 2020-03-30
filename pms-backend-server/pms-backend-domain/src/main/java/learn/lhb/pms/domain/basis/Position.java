@@ -20,7 +20,7 @@ public class Position extends BaseEntity {
     /**
      * 是否启用，1启用，0禁用，默认为启用状态
      */
-    private BaseEntity enabled;
+    private Boolean enabled;
 
     @Override
     public String toString() {
@@ -38,11 +38,11 @@ public class Position extends BaseEntity {
         this.name = name;
     }
 
-    public BaseEntity getEnabled() {
+    public Boolean getEnabled() {
         return enabled;
     }
 
-    public void setEnabled(BaseEntity enabled) {
+    public void setEnabled(Boolean enabled) {
         this.enabled = enabled;
     }
 }
