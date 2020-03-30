@@ -11,6 +11,11 @@ NProgress.configure({ showSpinner: false }) // NProgress Configuration
 
 const whiteList = ['/login', '/auth-redirect'] // 没有重定向白名单
 
+export function resetRouter() {
+  const newRouter = createRouter()
+  router.matcher = newRouter.matcher // the relevant part
+}
+
 // 钩子函数之前的回调
 router.beforeEach(async(to, from, next) => {
     // 开始进度条
@@ -45,6 +50,7 @@ router.beforeEach(async(to, from, next) => {
 
                     // 动态添加可访问路由
                     router.addRoutes(accessRoutes)
+
 
                     // hack方法，以确保addRoutes是完整的
                     // 设置replace: true，这样导航就不会留下历史记录
